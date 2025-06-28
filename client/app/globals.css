@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar for horizontal scrolling (board lists) */
+.board-container::-webkit-scrollbar {
+  height: 12px;
+}
+
+.board-container::-webkit-scrollbar-track {
+  background: #00000030; /* Darker track */
+  border-radius: 6px;
+}
+
+.board-container::-webkit-scrollbar-thumb {
+  background-color: #ffffff40; /* Lighter thumb */
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+.board-container::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff60;
+}
+
+/* Styling for react-beautiful-dnd placeholder */
+.placeholder-card {
+  background-color: #f0f0f0; /* Light gray placeholder */
+  border: 2px dashed #ccc; /* Dashed border */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  height: 48px; /* Approximate height of a card */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-style: italic;
+}
