@@ -1,5 +1,6 @@
 import List from '../models/List.schema.js';
 import Card from '../models/Card.schema.js';
+import { LIST } from '../enums/list.enums.js';
 
 // Create a new list
 export const createList = async (req, res) => {
@@ -34,28 +35,8 @@ export const updateList = async (req, res) => {
       { title, order },
       { new: true }
     );
-    if (!updatedList)
-      return res.status(404).json({ message: 'List not found' });
+    if (!updatedList) return res.status(404).json({ message: LIST.NOT_FOUND });
     res.json(updatedList);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-// Delete a list (and its associated cards)
-export const deleteList = async (req, res) => {
-  try {
-    const listId = req.params.id;
-
-    // Delete all cards associated with this list
-    await Card.deleteMany({ list: listId });
-
-    // Delete the list itself
-    const deletedList = await List.findByIdAndDelete(listId);
-    if (!deletedList)
-      return res.status(404).json({ message: 'List not found' });
-
-    res.json({ message: 'List and associated cards deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -77,7 +58,25 @@ export const updateLists = async (req, res) => {
       await List.bulkWrite(operations);
     }
 
-    res.json({ message: 'List orders updated successfully' });
+    res.json({ message: LIST.UPDATED_SUCCESSFULLY });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Delete a list (and its associated cards)
+export const deleteList = async (req, res) => {
+  try {
+    const listId = req.params.id;
+
+    // Delete all cards associated with this list
+    await Card.deleteMany({ list: listId });
+
+    // Delete the list itself
+    const deletedList = await List.findByIdAndDelete(listId);
+    if (!deletedList) return res.status(404).json({ message: LIST.NOT_FOUND });
+
+    res.json({ message: LIST.DELETED_SUCCESSFULLY });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

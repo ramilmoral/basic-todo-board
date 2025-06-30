@@ -1,4 +1,5 @@
 import Card from '../models/Card.schema.js';
+import { CARD } from '../enums/card.enums.js';
 
 // Create a new card
 export const getCard = async (req, res) => {
@@ -33,21 +34,8 @@ export const updateCard = async (req, res) => {
       { title, description, list: listId, order },
       { new: true }
     );
-    if (!updatedCard)
-      return res.status(404).json({ message: 'Card not found' });
+    if (!updatedCard) return res.status(404).json({ message: CARD.NOT_FOUND });
     res.json(updatedCard);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-// Delete a card
-export const deleteCard = async (req, res) => {
-  try {
-    const deletedCard = await Card.findByIdAndDelete(req.params.id);
-    if (!deletedCard)
-      return res.status(404).json({ message: 'Card not found' });
-    res.json({ message: 'Card deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -69,7 +57,18 @@ export const updateCards = async (req, res) => {
       await Card.bulkWrite(operations);
     }
 
-    res.json({ message: 'Card orders and/or lists updated successfully' });
+    res.json({ message: CARD.UPDATED_SUCCESSFULLY });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Delete a card
+export const deleteCard = async (req, res) => {
+  try {
+    const deletedCard = await Card.findByIdAndDelete(req.params.id);
+    if (!deletedCard) return res.status(404).json({ message: CARD.NOT_FOUND });
+    res.json({ message: CARD.DELETED_SUCCESSFULLY });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

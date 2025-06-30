@@ -1,5 +1,6 @@
 import Board from '../models/Board.schema.js';
 import List from '../models/List.schema.js';
+import { BOARD } from '../enums/board.enums.js';
 
 // Create a new board
 export const createBoard = async (req, res) => {
@@ -27,7 +28,7 @@ export const getBoards = async (req, res) => {
 export const getBoardById = async (req, res) => {
   try {
     const board = await Board.findById(req.params.id);
-    if (!board) return res.status(404).json({ message: 'Board not found' });
+    if (!board) return res.status(404).json({ message: BOARD.NOT_FOUND });
     res.json(board);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -44,7 +45,7 @@ export const updateBoard = async (req, res) => {
       { new: true } // Returns the updated document
     );
     if (!updatedBoard)
-      return res.status(404).json({ message: 'Board not found' });
+      return res.status(404).json({ message: BOARD.NOT_FOUND });
     res.json(updatedBoard);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -69,10 +70,10 @@ export const deleteBoard = async (req, res) => {
     // Delete the board itself
     const deletedBoard = await Board.findByIdAndDelete(boardId);
     if (!deletedBoard)
-      return res.status(404).json({ message: 'Board not found' });
+      return res.status(404).json({ message: BOARD.NOT_FOUND });
 
     res.json({
-      message: 'Board and associated lists/cards deleted successfully',
+      message: BOARD.DELETED_SUCCESSFULLY,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
