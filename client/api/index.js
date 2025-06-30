@@ -1,4 +1,3 @@
-// frontend/src/api.js
 const API_BASE_URL = 'http://localhost:4000/api';
 
 export const getBoards = async () => {
@@ -33,7 +32,7 @@ export const deleteBoard = async (boardId) => {
 
 // --- Lists ---
 export const getListsByBoard = async (boardId) => {
-  const response = await fetch(`${API_BASE_URL}/lists/board/${boardId}`);
+  const response = await fetch(`${API_BASE_URL}/lists/${boardId}`);
   if (!response.ok) throw new Error('Failed to fetch lists');
   return response.json();
 };
@@ -78,7 +77,7 @@ export const deleteList = async (listId) => {
 
 // --- Cards ---
 export const getCardsByList = async (listId) => {
-  const response = await fetch(`${API_BASE_URL}/cards/list/${listId}`);
+  const response = await fetch(`${API_BASE_URL}/cards/${listId}`);
   if (!response.ok) throw new Error('Failed to fetch cards');
   return response.json();
 };

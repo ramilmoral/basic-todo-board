@@ -1,5 +1,5 @@
 import { Router } from 'express';
-const router = Router();
+
 import {
   getBoardList,
   createList,
@@ -7,6 +7,8 @@ import {
   updateLists,
   deleteList,
 } from '../controllers/List.controller.js';
+
+const router = Router();
 
 router.get('/:boardId', getBoardList);
 router.post('/', createList);

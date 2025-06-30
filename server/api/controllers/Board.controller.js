@@ -16,7 +16,7 @@ export const createBoard = async (req, res) => {
 // Get all boards
 export const getBoards = async (req, res) => {
   try {
-    const boards = await Board.find();
+    const boards = await Board.find({});
     res.json(boards);
   } catch (error) {
     res.status(500).json({ message: error.message });

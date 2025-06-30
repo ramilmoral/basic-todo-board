@@ -210,13 +210,15 @@ export const Board = ({
   const onDragEnd = async (result) => {
     const { source, destination, draggableId, type } = result;
 
-    if (!destination) return; // Dropped outside a valid droppable area
+    // Dropped outside a valid droppable area
+    if (!destination) return;
 
+    // Dropped in the same spot
     if (
       source.droppableId === destination.droppableId &&
       source.index === destination.index
     ) {
-      return; // Dropped in the same spot
+      return;
     }
 
     if (type === 'list') {
@@ -230,7 +232,7 @@ export const Board = ({
         order: index,
       }));
 
-      setLists(newLists); // Optimistic update
+      setLists(newLists);
       try {
         await updateListOrder(updatedListOrder);
       } catch (err) {
@@ -243,7 +245,7 @@ export const Board = ({
           showCancel: false,
         });
         setGlobalShowModal(true);
-        setLists(lists); // Revert on error
+        setLists(lists);
       }
       return;
     }
@@ -401,7 +403,6 @@ export const Board = ({
         <h1 className="text-3xl font-bold flex-grow">{board.title}</h1>
       </header>
 
-      {/* Directly render DraggableBoardContent. No Suspense/lazy needed with @hello-pangea/dnd generally */}
       <DraggableBoardContent
         lists={lists}
         cardsByList={cardsByList}

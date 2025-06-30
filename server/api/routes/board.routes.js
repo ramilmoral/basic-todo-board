@@ -1,5 +1,5 @@
 import { Router } from 'express';
-const router = Router();
+
 import {
   createBoard,
   getBoards,
@@ -7,6 +7,8 @@ import {
   updateBoard,
   deleteBoard,
 } from '../controllers/Board.controller.js';
+
+const router = Router();
 
 router.get('/', getBoards);
 router.get('/:id', getBoardById);

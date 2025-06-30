@@ -1,9 +1,10 @@
-'use client'; // Ensures this is treated as a client-side component
+'use client';
 
 import React from 'react';
-import { DragDropContext, Droppable } from '@hello-pangea/dnd'; // Changed from 'react-beautiful-dnd'
+import { DragDropContext, Droppable } from '@hello-pangea/dnd';
+import { List } from './List';
 
-// DraggableBoardContent component - This component wraps the DragDropContext
+// This component wraps the DragDropContext
 export const DraggableBoardContent = ({
   lists,
   cardsByList,
@@ -30,21 +31,22 @@ export const DraggableBoardContent = ({
             {...provided.droppableProps}
             className="flex flex-grow p-4 overflow-x-auto items-start board-container"
           >
-            {lists.map((list, index) => (
-              <List
-                key={list._id}
-                list={list}
-                index={index}
-                cards={cardsByList[list._id] || []}
-                onAddCard={onAddCard}
-                onUpdateList={onUpdateList}
-                onDeleteList={onDeleteList}
-                onUpdateCard={onUpdateCard}
-                onDeleteCard={onDeleteCard}
-                setModalContent={setGlobalModalContent}
-                setShowModal={setGlobalShowModal}
-              />
-            ))}
+            {lists &&
+              lists.map((list, index) => (
+                <List
+                  key={list._id}
+                  list={list}
+                  index={index}
+                  cards={cardsByList[list._id] || []}
+                  onAddCard={onAddCard}
+                  onUpdateList={onUpdateList}
+                  onDeleteList={onDeleteList}
+                  onUpdateCard={onUpdateCard}
+                  onDeleteCard={onDeleteCard}
+                  setModalContent={setGlobalModalContent}
+                  setShowModal={setGlobalShowModal}
+                />
+              ))}
             {provided.placeholder}
 
             {isAddingList ? (

@@ -3,7 +3,6 @@
 import React from 'react';
 import { Draggable } from '@hello-pangea/dnd';
 
-// Card Component (Copied from previous App.js to be self-contained for this draggable context)
 export const Card = ({
   card,
   index,

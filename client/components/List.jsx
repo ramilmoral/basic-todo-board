@@ -3,7 +3,6 @@
 import React from 'react';
 import { Droppable, Draggable } from '@hello-pangea/dnd';
 
-// List Component (Copied from previous App.js to be self-contained for this draggable context)
 export const List = ({
   list,
   index,

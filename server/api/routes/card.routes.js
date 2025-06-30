@@ -1,5 +1,5 @@
 import { Router } from 'express';
-const router = Router();
+
 import {
   getCard,
   getCardById,
@@ -7,6 +7,8 @@ import {
   updateCards,
   deleteCard,
 } from '../controllers/Card.controller.js';
+
+const router = Router();
 
 router.get('/', getCard);
 router.get('/:id', getCardById);

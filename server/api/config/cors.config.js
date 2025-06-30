@@ -8,11 +8,6 @@ export const corsOptions = {
     allowedAPIConsumers.indexOf(origin) !== -1
       ? callback(null, true)
       : callback(null, false);
-    // if (allowedAPIConsumers.indexOf(origin) !== -1) {
-    //   callback(null, true);
-    // } else {
-    //   callback(null, false);
-    // }
   },
   methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS', 'HEAD'],
   optionsSuccessStatus: 200,
