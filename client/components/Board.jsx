@@ -1,4 +1,4 @@
-'use client'; // Ensures this is treated as a client-side component
+'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { DraggableBoardContent } from './DraggableBoardContent';

@@ -1,6 +1,7 @@
-'use client'; // This directive ensures the component is treated as a client-side component
+'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { Button } from '@/components/ui/button';
 import { Board } from '@/components/Board';
 import { Modal } from '@/components/Modal';
 import { createBoard, deleteBoard, getBoards } from '@/api';
@@ -204,7 +205,7 @@ export default function Home() {
               </div>
             </div>
           ) : (
-            <button
+            <Button
               onClick={() => setIsAddingBoard(true)}
               className="w-full bg-blue-500 text-white py-4 rounded-lg shadow-lg hover:bg-blue-600 transition-colors duration-200 text-xl font-medium flex items-center justify-center space-x-3"
             >
@@ -221,7 +222,7 @@ export default function Home() {
                 />
               </svg>
               <span>Add New Board</span>
-            </button>
+            </Button>
           )}
         </div>
       </div>
